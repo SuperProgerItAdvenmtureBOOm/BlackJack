@@ -4,10 +4,16 @@ import java.util.ArrayList;
 
 public class Fabrics {
     public static JLabel myCardLabelFabric(int number){
+        Card myCard = Card.getCard();
         JLabel label1 = new JLabel();
         label1.setOpaque(true);
-        label1.setBackground(new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255)));
+        label1.setBackground(Color.white);
+        //set suit
+        label1.setText(myCard.getSymbol()+"\u2660");
         label1.setBounds(number*50,0,100,150);
+        label1.setFont(new Font("Dialog",Font.BOLD,25));
+        label1.setVerticalTextPosition(JLabel.TOP);
+        label1.setBorder(BorderFactory.createLineBorder(Game.MyColor.GOLD_COLOR,2));
         return label1;
     }
     public class MyLayeredPane{

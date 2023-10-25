@@ -34,9 +34,6 @@ public class Game {
         public static int getCounterOfPlayerCards(){
             return counterOfPlayerCards;
         }
-        public static Card randomCard(){
-
-        }
 
 
 }
