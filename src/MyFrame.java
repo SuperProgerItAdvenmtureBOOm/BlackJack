@@ -10,7 +10,6 @@ public class MyFrame extends JFrame {
     private JLayeredPane casinoCardsPane;
     private JLayeredPane playerCardsPane;
     MyFrame() {
-        System.out.println("\u2666");
         JPanel myToolPanel = new JPanel();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(Game.WIDTH_OF_GAMING_FIELD, Game.LENGTH_OF_GAMING_FIELD);

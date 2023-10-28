@@ -1,12 +1,15 @@
 import java.util.HashMap;
 import java.util.Map;
 
+;
 public class Card {
+    private final Suit cardSuit;
     private final int number;
     private final String symbol;
-    Card(int number,String symbol){
+    Card(int number,String symbol,Suit cardSuit){
         this.number = number;
         this.symbol = symbol;
+        this.cardSuit = cardSuit;
     }
     private static Map<Integer,String> cardMap;
 
@@ -21,8 +24,7 @@ public class Card {
         int randnumber = (int)(Math.random()*13+2);
         //converts number in map to number of points in the game;
         int pasteNumber = randnumber <11?randnumber:randnumber == 14? 11:10;
-
-        return new Card(pasteNumber,cardMap.get(randnumber));
+        return new Card(pasteNumber,cardMap.get(randnumber),Suit.values()[(int)(Math.random()*4)]);
     }
 
     public int getNumber() {
@@ -30,5 +32,8 @@ public class Card {
     }
     public String getSymbol(){
         return symbol;
+    }
+    public Suit getCardSuit(){
+        return cardSuit;
     }
 }
