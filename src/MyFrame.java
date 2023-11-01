@@ -53,10 +53,11 @@ public class MyFrame extends JFrame {
         moreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Game.getCounterOfPlayerCards()==9)
-                    moreButton.setEnabled(false);
-                else
+                if(Game.getCounterOfPlayerCards() <9) {
+                    if (Game.getCounterOfPlayerCards() == 8)
+                        moreButton.setEnabled(false);
                     playerCardsPane.add(Fabrics.myCardLabelFabric(Game.getAndIncreaseCounterOfPlayerCards()));
+                }
             }
         });
 

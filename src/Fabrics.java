@@ -6,9 +6,9 @@ public class Fabrics {
     public static JLabel myCardLabelFabric(int number){
         ArrayList<String> cardSymbols = new ArrayList<>();
         cardSymbols.add("\u2665");
-        cardSymbols.add("\u2660");
-        cardSymbols.add("\u2663");
         cardSymbols.add("\u2666");
+        cardSymbols.add("\u2663");
+        cardSymbols.add("\u2660");
         Card myCard = Card.getCard();
         JLabel label1 = new JLabel();
         label1.setOpaque(true);
