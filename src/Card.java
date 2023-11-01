@@ -23,7 +23,7 @@ public class Card {
     public static Card getCard(){
         int randnumber = (int)(Math.random()*13+2);
         //converts number in map to number of points in the game;
-        int pasteNumber = randnumber <11?randnumber:randnumber == 14? 11:10;
+        //int pasteNumber = randnumber < 11?randnumber:randnumber == 14? 11:10;
         return new Card(pasteNumber,cardMap.get(randnumber),Suit.values()[(int)(Math.random()*4)]);
     }
 
