@@ -12,6 +12,8 @@ public class Card {
         this.cardSuit = cardSuit;
     }
     private static Map<Integer,String> cardMap;
+    //map of cards, that are already on the table
+    private static Map<Integer,Suit> MapOfUsedCards;
 
     static {
         //initializing the card map? where first argument is number in the game, the second - symbol on the card
@@ -22,9 +24,8 @@ public class Card {
     }
     public static Card getCard(){
         int randnumber = (int)(Math.random()*13+2);
-        //converts number in map to number of points in the game;
         //int pasteNumber = randnumber < 11?randnumber:randnumber == 14? 11:10;
-        return new Card(pasteNumber,cardMap.get(randnumber),Suit.values()[(int)(Math.random()*4)]);
+        return new Card(randnumber,cardMap.get(randnumber),Suit.values()[(int)(Math.random()*4)]);
     }
 
     public int getNumber() {
