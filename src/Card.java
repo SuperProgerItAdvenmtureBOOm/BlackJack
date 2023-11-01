@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class Card {
     }
     private static Map<Integer,String> cardMap;
     //map of cards, that are already on the table
-    private static Map<Integer,Suit> MapOfUsedCards;
+    private static ArrayList<Card> usedCards = new ArrayList<>();
 
     static {
         //initializing the card map? where first argument is number in the game, the second - symbol on the card
@@ -23,9 +24,26 @@ public class Card {
         cardMap.put(14,"A");
     }
     public static Card getCard(){
-        int randnumber = (int)(Math.random()*13+2);
+        int randnumber = 0;
+        Suit suit = null;
+        boolean allowFlag = true;
+        //if we already have this card, we will remake it
+        while(allowFlag){
+            allowFlag = false;
+            randnumber = (int)(Math.random()*13+2);
+            suit = Suit.values()[(int)(Math.random()*4)];
+                for (Card card : usedCards) {
+                    if (card.getCardSuit() == suit && card.getNumber() == randnumber)
+                        allowFlag = true;
+                }
+
+        }
+        //putting this card into a container of used cards
+        Card currentCard = new Card(randnumber,cardMap.get(randnumber),suit);
+        usedCards.add(currentCard);
         //int pasteNumber = randnumber < 11?randnumber:randnumber == 14? 11:10;
-        return new Card(randnumber,cardMap.get(randnumber),Suit.values()[(int)(Math.random()*4)]);
+
+        return currentCard;
     }
 
     public int getNumber() {
