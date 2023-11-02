@@ -67,29 +67,35 @@ public class MyFrame extends JFrame {
                                 //sets score of player label
                                 playerScoreLabel.setText(Integer.toString(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE)));
     //variants of the ending of the game
-                if(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE) > 21) {
-                    //lose
-                        int choise = JOptionPane.showConfirmDialog(null,"You Lose((((.\nDont you want to continue?","",JOptionPane.YES_NO_OPTION);
-                        if(choise == 1) {
-                            //exit the program
-                            System.exit(0);
+                int currentScore = AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE);
+                        if (currentScore >= 21) {
+                            int choise = 0;
+                            String message = "";
+                            //lose
+                                if (currentScore > 21)
+                                    message = "You Lose((((.\nDont you want to continue?";
+                            //win
+                                if (currentScore == 21)
+                                    message = "YOU WIN!!!,CONGRATS\nDont you want to continue?";
+
+                            choise = JOptionPane.showConfirmDialog(null, message, "", JOptionPane.YES_NO_OPTION);
+                                if (choise == 1) {
+                                    //exit the program
+                                    System.exit(0);
+                                }
+                            //continuing the game
+                                    else {
+                                        playerCardsPane.removeAll();
+                                        casinoCardsPane.removeAll();
+                                        repaint();
+                                        Game.newGame();
+                                        startNewGame();
+                                        playerScoreLabel.setText(Integer.toString(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE)));
+                                        casinoScoreLabel.setText(Integer.toString(AdditionalTools.Score.getScore(Game.Tables.CASINO_TABLE)));
+                                    }
+
+
                         }
-
-                            playerCardsPane.removeAll();
-                            casinoCardsPane.removeAll();
-                                    repaint();
-                                    Game.newGame();
-                                    startNewGame();
-                        playerScoreLabel.setText(Integer.toString(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE)));
-                        casinoScoreLabel.setText(Integer.toString(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE)));
-
-                }
-
-                if(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE) == 21) {
-                    //win
-
-                }
-
             }
         });
 
