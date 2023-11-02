@@ -35,5 +35,9 @@ public class Game {
             return counterOfPlayerCards;
         }
 
+        public static void newGame(){
+            counterOfCasinoCards=0;
+            counterOfPlayerCards=0;
+        }
 
 }
