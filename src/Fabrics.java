@@ -3,28 +3,50 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Fabrics {
-    public static JLabel myCardLabelFabric(int number){
+    public static JLabel myCardLabelFabric(int number,Game.Tables table){
         ArrayList<String> cardSymbols = new ArrayList<>();
         cardSymbols.add("\u2665");
         cardSymbols.add("\u2666");
         cardSymbols.add("\u2663");
         cardSymbols.add("\u2660");
         Card myCard = Card.getCard();
+            AdditionalTools.Score.increaseScore(myCard,table);
+
+
+            JLabel label1 = new JLabel();
+            label1.setOpaque(true);
+            label1.setBackground(Color.white);
+            //set suit
+            label1.setText(myCard.getSymbol()+cardSymbols.get(myCard.getCardSuit().ordinal()));
+            if(myCard.getCardSuit() == Suit.HEARTS || myCard.getCardSuit() == Suit.DIAMONDS)
+                label1.setForeground(Color.red);
+
+
+            label1.setBounds(number*50,0,100,150);
+            label1.setFont(new Font("Dialog",Font.BOLD,25));
+
+            label1.setVerticalAlignment(JLabel.TOP);
+            label1.setBorder(BorderFactory.createLineBorder(Game.MyColor.GOLD_COLOR,2));
+        return label1;
+    }
+    public static JLabel scoreLabelFabric(Game.Tables table){
+        int factor = 0;
+        switch(table){
+            case CASINO_TABLE:
+                factor = 1;
+                break;
+            case PLAYER_TABLE:
+                factor = 4;
+        }
         JLabel label1 = new JLabel();
         label1.setOpaque(true);
         label1.setBackground(Color.white);
-        //set suit
-        label1.setText(myCard.getSymbol()+cardSymbols.get(myCard.getCardSuit().ordinal()));
-        if(myCard.getCardSuit() == Suit.HEARTS || myCard.getCardSuit() == Suit.DIAMONDS)
-            label1.setForeground(Color.red);
-
-
-        label1.setBounds(number*50,0,100,150);
+        label1.setBounds(900,Game.LENGTH_OF_GAMING_FIELD/6*factor,80,40);
         label1.setFont(new Font("Dialog",Font.BOLD,25));
-
+        label1.setText(Integer.toString(AdditionalTools.Score.getScore(table)));
         label1.setVerticalAlignment(JLabel.TOP);
-        label1.setBorder(BorderFactory.createLineBorder(Game.MyColor.GOLD_COLOR,2));
-        return label1;
+            label1.setBorder(BorderFactory.createLineBorder(Game.MyColor.GOLD_COLOR,2));
+            return label1;
     }
     public class MyLayeredPane{
 

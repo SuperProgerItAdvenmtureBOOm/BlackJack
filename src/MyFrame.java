@@ -39,12 +39,16 @@ public class MyFrame extends JFrame {
                 casinoCardsPane = Fabrics.MyLayeredPane.createLayeredPane(Game.Tables.CASINO_TABLE);
                 playerCardsPane = Fabrics.MyLayeredPane.createLayeredPane( Game.Tables.PLAYER_TABLE);
                 //deal cards in the begging
-                    playerCardsPane.add(Fabrics.myCardLabelFabric(Game.getAndIncreaseCounterOfPlayerCards()));
-                    casinoCardsPane.add(Fabrics.myCardLabelFabric(Game.getAndIncreaseCounterOfCasinoCards()));
+                    playerCardsPane.add(Fabrics.myCardLabelFabric(Game.getAndIncreaseCounterOfPlayerCards(),Game.Tables.PLAYER_TABLE));
+                    casinoCardsPane.add(Fabrics.myCardLabelFabric(Game.getAndIncreaseCounterOfCasinoCards(),Game.Tables.CASINO_TABLE));
+
+                    JLabel playerScoreLabel = Fabrics.scoreLabelFabric(Game.Tables.PLAYER_TABLE);
 
             this.setLayout(null);
             this.add(playerCardsPane);
             this.add(casinoCardsPane);
+            this.add(playerScoreLabel);
+            this.add(Fabrics.scoreLabelFabric(Game.Tables.CASINO_TABLE));
             this.getContentPane().setBackground(Game.MyColor.GAMING_PANEL_COLOR);
             this.add(moreButton);
             this.add(myToolPanel);
@@ -56,8 +60,16 @@ public class MyFrame extends JFrame {
                 if(Game.getCounterOfPlayerCards() <9) {
                     if (Game.getCounterOfPlayerCards() == 8)
                         moreButton.setEnabled(false);
-                    playerCardsPane.add(Fabrics.myCardLabelFabric(Game.getAndIncreaseCounterOfPlayerCards()));
+                    playerCardsPane.add(Fabrics.myCardLabelFabric(Game.getAndIncreaseCounterOfPlayerCards(), Game.Tables.PLAYER_TABLE));
                 }
+                if(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE) > 21) {
+                    JOptionPane.showConfirmDialog(null,"You Lose((((.\nDont you want to continue?","",JOptionPane.YES_NO_OPTION);
+                }
+                if(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE) == 21) {
+
+                }
+                else
+                    playerScoreLabel.setText(Integer.toString(AdditionalTools.Score.getScore(Game.Tables.PLAYER_TABLE)));
             }
         });
 

@@ -41,7 +41,7 @@ public class Card {
         //putting this card into a container of used cards
         Card currentCard = new Card(randnumber,cardMap.get(randnumber),suit);
         usedCards.add(currentCard);
-        //int pasteNumber = randnumber < 11?randnumber:randnumber == 14? 11:10;
+
 
         return currentCard;
     }
